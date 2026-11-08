@@ -1,0 +1,37 @@
+{
+  "model": "xgboost",
+  "lags": 12,
+  "params": {
+    "n_estimators": 2000,
+    "max_depth": 8,
+    "learning_rate": 0.05,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "min_child_weight": 5.0,
+    "early_stopping_rounds": 50,
+    "seed": 42
+  },
+  "train_windows": 276168,
+  "validation_windows": 38208,
+  "train_seconds": 7.09,
+  "trained_at": "2026-11-08 11:39:41",
+  "trees": 498,
+  "best_val_rmse": 0.05245815651850479,
+  "feature_importance_gain": {
+    "flow_t-1": 0.5633,
+    "flow_t-2": 0.357,
+    "cos_time": 0.0294,
+    "sin_time": 0.0126,
+    "weekend": 0.0102,
+    "flow_t-3": 0.0063,
+    "flow_t-4": 0.0031,
+    "flow_t-10": 0.0028,
+    "flow_t-12": 0.0025,
+    "flow_t-11": 0.0024,
+    "flow_t-9": 0.0022,
+    "flow_t-5": 0.0022,
+    "flow_t-8": 0.0021,
+    "flow_t-7": 0.002,
+    "flow_t-6": 0.002
+  }
+}

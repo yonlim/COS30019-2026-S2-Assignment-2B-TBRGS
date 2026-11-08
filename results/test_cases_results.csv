@@ -1,0 +1,26 @@
+id,owner,scenario,input,expected,actual,result
+TC01,Lim,"Brief example, LSTM flows","2000 -> 3002, Wed 25 Oct 08:00, AS, k=5","5 loopless routes, fastest first",R1 15.3 min via 2000-3682-3804-4040-3120-4035-3002; R2 16.1 min via 2000-3682-3804-4040-4272-4270-4264-4263-3002,PASS
+TC02,Jonathan,"Brief example, GRU flows",as TC01 with GRU,"5 loopless routes, fastest first",R1 15.3 min via 2000-3682-3804-4040-3120-4035-3002; R2 15.7 min via 2000-4043-4040-3120-4035-3002,PASS
+TC03,Lau,"Brief example, XGBoost flows",as TC01 with XGBoost,"5 loopless routes, fastest first",R1 15.2 min via 2000-3682-3804-4040-3120-4035-3002; R2 15.6 min via 2000-4043-4040-3120-4035-3002,PASS
+TC04,Lim,Night is faster than the morning peak,2000 -> 3002 at 03:00 and 08:00,03:00 fastest time < 08:00 fastest time,03:00 12.3 min vs 08:00 15.3 min,PASS
+TC05,Lau,Reverse trip in the evening peak,"3002 -> 2000, Wed 17:30",5 loopless routes,R1 14.6 min via 3002-4035-3120-4040-3804-3682-2000; R2 15.6 min via 3002-4263-4264-4270-4272-4040-3804-3682-2000,PASS
+TC06,Lau,Origin equals destination,2000 -> 2000,"one route [2000], 0 s",R1 0.0 min via 2000,PASS
+TC07,Jonathan,Neighbouring sites,2000 -> 3685,route 1 is the direct link; time = distance/speed + 30 s,"R1 [2000, 3685], 0.333 km at 46.0 km/h + 30 s = 56.0 s; 1 routes",PASS
+TC08,Jonathan,Site joined by a manual link,4812 -> 3002,routes leave 4812 through 4263 or 4821,R1 3.2 min via 4812-4263-3002; R2 5.5 min via 4812-4821-3001-3002,PASS
+TC09,Lau,Long trip across the network,2820 -> 970,5 loopless routes,R1 21.6 min via 2820-3662-3002-4035-3120-4040-4043-2000-3685-970; R2 21.7 min via 2820-3662-3002-4035-3120-4040-3804-3682-2000-3685-970,PASS
+TC10,Lim,Weekend morning,"2000 -> 3002, Sat 28 Oct 08:00 vs Wed",Saturday no slower than Wednesday,Sat 12.5 min vs Wed 15.3 min,PASS
+TC11,Lau,Date outside the dataset,2026-11-11 08:00 (a Wednesday),mapped to Wed 25 Oct 2006 08:00 with a note,used 2006-10-25 08:00:00; note: 2026-11-11 08:00 is outside the data (1-31 Oct 2006); using ...,PASS
+TC12,Lau,Only one route requested,k=1,exactly one route,R1 15.3 min via 2000-3682-3804-4040-3120-4035-3002,PASS
+TC13,Lau,Uniform-cost search (CUS1),method CUS1,same time as A*,"15.3 min, 6 intersections, 43 nodes (A*: 15.3 min, 6 intersections)",PASS
+TC14,Lau,Breadth-first search,method BFS,fewest intersections; not faster than A*,"16.5 min, 5 intersections, 32 nodes (A*: 15.3 min, 6 intersections)",PASS
+TC15,Lau,Depth-first search,method DFS,a valid route; not faster than A*,"17.2 min, 7 intersections, 14 nodes (A*: 15.3 min, 6 intersections)",PASS
+TC16,Lau,Greedy best-first search,method GBFS,a valid route; not faster than A*,"17.3 min, 7 intersections, 20 nodes (A*: 15.3 min, 6 intersections)",PASS
+TC17,Lau,IDA* fewest moves (CUS2),method CUS2,fewest intersections; not faster than A*,"16.5 min, 5 intersections, 63 nodes (A*: 15.3 min, 6 intersections)",PASS
+TC18,Lau,Unknown site,origin 9999,clear error message,ValueError: 9999 is not a SCATS site in the dataset. Valid sit...,PASS
+TC19,Lim,Time not on a 15-minute boundary,08:07,rounded down to 08:00,used 2006-10-25 08:00:00,PASS
+TC20,Lim,No history yet (start of the data),Sun 1 Oct 01:00,all 140 detectors use the historical average; routes still found,140 detectors used the historical average; R1 12.3 min via 2000-4043-4040-3120-4035-3002,PASS
+TC21,Lim,Detector with missing days,"3001 -> 3002, Thu 26 Oct 08:00",detector 3001-6 falls back; routes still found,19 detectors without recent history fell back; R1 0.9 min via 3001-3002,PASS
+TC22,Jonathan,Flow from the origin site instead,flow_site=origin,routes found with the other flow rule,"destination rule 15.3 min, origin rule 15.2 min",PASS
+TC23,Lim,Observed flows instead of a model,model observed,5 loopless routes,R1 15.0 min via 2000-3682-3804-4040-3120-4035-3002; R2 15.3 min via 2000-4043-4040-3120-4035-3002,PASS
+TC24,Jonathan,No intersection delay,intersection_delay_s=0,at least 30 s per intersection faster,"15.3 min with 30 s delays, 12.1 min without",PASS
+TC25,Jonathan,Lower road capacity,capacity 900 veh/h at 25 km/h,slower than normal,capacity 1500 veh/h: 15.3 min; 900 veh/h at 25 km/h: 23.3 min,PASS

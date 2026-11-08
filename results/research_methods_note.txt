@@ -1,0 +1,1 @@
+Flows: lstm at 2006-10-25 08:00. Top-5 (A*): route 5 is on average 128.4% slower than route 1; alternatives share 31% of their links with route 1.

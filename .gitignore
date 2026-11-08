@@ -1,0 +1,12 @@
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Virtual environment (recreate with: py -3.13 -m venv .venv)
+.venv/
+
+# Cached copy of the SCATS data, rebuilt automatically on the first run
+data/cache/
+
+# Browser map written by the GUI's "Open map in browser" button
+results/route_map.html

@@ -1,0 +1,4 @@
+site_a,site_b,via,approach_at_a,approach_at_b,reason
+4821,4812,BURNLEY_ST and SWAN_ST,BURNLEY_ST S OF VICTORIA_ST,SWAN_ST SW of MADDEN_GV,"Burnley St runs south from Victoria St to Swan St, which meets Madden Gv at Burnley; no other monitored site lies on either road"
+4812,4263,SWAN_ST and POWER_ST,SWAN_ST NE of MADDEN_GV,POWER_ST S of BURWOOD_RD,"Swan St crosses the Yarra and ends at Wallen Rd/Power St in Hawthorn; Power St runs north to Burwood Rd (site 4263)"
+2846,4043,HIGH_ST and BURKE_RD (Glen Iris),HIGH_ST W OF WILLS_ST,BURKE_RD S of TOORAK_RD,"Site 2846 (Monash Fwy/High St/Wills St) has no other monitored site on its roads; High St runs west to Burke Rd, which runs north to Toorak Rd (site 4043)"

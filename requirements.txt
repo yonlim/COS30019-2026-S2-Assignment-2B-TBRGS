@@ -1,0 +1,10 @@
+# Python 3.11, 3.12 or 3.13 (TensorFlow 2.21 has no build for newer versions yet).
+# Install with:  pip install -r requirements.txt
+numpy>=1.26
+pandas>=2.1
+xlrd>=2.0.1          # reads the .xls dataset
+scikit-learn>=1.3    # needed by xgboost's scikit-learn interface
+xgboost>=2.0
+tensorflow>=2.16     # brings Keras 3 (LSTM and GRU)
+matplotlib>=3.8
+folium>=0.15         # optional: the OpenStreetMap route map
