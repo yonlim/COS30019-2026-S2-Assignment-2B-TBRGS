@@ -41,7 +41,7 @@ def save_route_map(system, result, estimates=None, path: str | None = None) -> s
     sites = system.data.sites
     points = {site: corrected_position(system, site) for site in sites.index}
     centre = (sum(p[0] for p in points.values()) / len(points), sum(p[1] for p in points.values()) / len(points))
-    fmap = folium.Map(location=centre, zoom_start=13, tiles="OpenStreetMap", control_scale=True)
+    fmap = folium.Map(location=centre, zoom_start=13, tiles="Esri.WorldStreetMap", control_scale=True)
 
     network = system.network()
     roads = folium.FeatureGroup(name="Predicted speed on each link")
