@@ -20,7 +20,7 @@ Writes to results/:
 2. Breakdowns by time of day, period and site show where models differ.
 3. Pairwise tests: errors of neighbouring 15-minute intervals are strongly
    related, so a plain t-test would overstate the evidence. Instead the
-   detector-days are resampled (block bootstrap, 2,000 times) to get a 95%
+   detector-days are resampled (block bootstrap, 100 times) to get a 95%
    interval for the difference in mean absolute error between two models.
 4. Route impact: for sampled origin-destination pairs and times, the fastest
    route is computed from each model's predicted flows and from the observed
@@ -81,7 +81,7 @@ def predict_all(config, prepared, log=print) -> dict:
     return outputs
 
 
-def block_bootstrap(errors_a, errors_b, blocks, repeats=2000, seed=0) -> tuple:
+def block_bootstrap(errors_a, errors_b, blocks, repeats=100, seed=0) -> tuple:
     """95% interval for mean(|e_a|) - mean(|e_b|), resampling whole blocks (detector-days)."""
     frame = pd.DataFrame({"d": np.abs(errors_a) - np.abs(errors_b), "block": blocks})
     per_block = frame.groupby("block")["d"].agg(["sum", "count"])
